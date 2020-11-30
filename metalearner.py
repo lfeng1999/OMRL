@@ -184,8 +184,7 @@ class MetaLearner:
                         indices = np.random.choice(self.train_tasks, self.args.meta_batch)
                         loss, _, _, _, _ = self.update_vae(indices)
                         if (update + 1) % int(self.args.pretrain_len / 10) == 0:
-                            print('Initial VAE training, {} updates. VAE loss: {:.3f}'.format(update + 1,
-                                                                                              loss.item()))
+                            print('Initial VAE training, {} updates. VAE loss: {:.3f}'.format(update + 1, loss.item()))
                     self._n_vae_update_steps_total += self.args.vae_updates_per_iter
 
             # collect data from subset of train tasks
@@ -217,6 +216,7 @@ class MetaLearner:
         for update in range(self.args.rl_updates_per_iter):
             # sample random RL batch
             obs, actions, rewards, next_obs, terms = self.sample_rl_batch(tasks, self.args.batch_size)
+
             # flatten out task dimension
             t, b, _ = obs.size()
             obs = obs.view(t * b, -1)

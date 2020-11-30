@@ -83,6 +83,7 @@ class SAC(nn.Module):
         return action.detach().cpu().numpy()[0]
 
     def update(self, obs, action, reward, next_obs, done, **kwargs):
+
         # computation of critic loss
         with torch.no_grad():
             next_action, _, _, next_log_prob = self.act(next_obs, return_log_prob=True)
@@ -137,7 +138,7 @@ class SAC(nn.Module):
 
             self.alpha_entropy_optim.zero_grad()
             alpha_entropy_loss.backward()
-            self.alpha_optim.step()
+            self.alpha_entropy_optim.step()
 
             self.alpha_entropy = self.log_alpha_entropy.exp()
             # alpha_entropy_tlogs = self.alpha_entropy.clone()    # For TensorboardX logs
