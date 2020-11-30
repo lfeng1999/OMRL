@@ -178,14 +178,6 @@ class MetaLearner:
                     # self.collect_rollouts(num_rollouts=self.args.num_init_rollouts_pool)
                     self.collect_rollouts(num_rollouts=self.args.num_init_rollouts_pool, random_actions=True)
                 print('Done!')
-                if self.args.pretrain_len > 0:
-                    print('Pre-training for {} updates.'.format(self.args.pretrain_len))
-                    for update in range(self.args.pretrain_len):
-                        indices = np.random.choice(self.train_tasks, self.args.meta_batch)
-                        loss, _, _, _, _ = self.update_vae(indices)
-                        if (update + 1) % int(self.args.pretrain_len / 10) == 0:
-                            print('Initial VAE training, {} updates. VAE loss: {:.3f}'.format(update + 1, loss.item()))
-                    self._n_vae_update_steps_total += self.args.vae_updates_per_iter
 
             # collect data from subset of train tasks
             for i in range(self.args.num_tasks_sample):
