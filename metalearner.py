@@ -486,7 +486,7 @@ class MetaLearner:
                                                  self._n_env_steps_total)
                 self.tb_logger.writer.add_scalar('rl_losses/policy_loss', train_stats['policy_loss'],
                                                  self._n_env_steps_total)
-                self.tb_logger.writer.add_scalar('rl_losses/alpha_loss', train_stats['alpha_loss'],
+                self.tb_logger.writer.add_scalar('rl_losses/alpha_entropy_loss', train_stats['alpha_entropy_loss'],
                                                  self._n_env_steps_total)
 
             # VAE losses
