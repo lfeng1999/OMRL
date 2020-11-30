@@ -31,7 +31,7 @@ def get_args(rest_args):
     parser.add_argument('--rl-updates-per-iter', type=int, default=500, help='number of RL steps per iteration')
     parser.add_argument('--vae-updates-per-iter', type=int, default=50, help='number of VAE steps per iteration')
     parser.add_argument('--num-rollouts-per-iter', type=int, default=5, help='number of rollouts to collect per task')
-    parser.add_argument('--num-init-rollouts-pool', type=int, default=0,
+    parser.add_argument('--num-init-rollouts-pool', type=int, default=20,
                         help='number of initial rollouts collect per task, before training begins')
     parser.add_argument('--batch-size', type=int, default=256, help='number of transitions in RL batch (per task)')
     parser.add_argument('--vae-batch-num-rollouts-per-task', type=int, default=2,
